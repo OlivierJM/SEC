@@ -50,7 +50,7 @@ export  class Header extends Component {
                             <a href="/">Home</a>
                         </li>
                         <li className='navLinks'>
-                            <a href="/calculate">Calculate </a>
+                            <a href="/">Calculate </a>
                         </li>
                     </ul>
                     {/* <div className="navbar-header">
@@ -84,7 +84,7 @@ export  class Header extends Component {
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/posts">Calculate </a>
+                            <a href="/">Calculate </a>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">

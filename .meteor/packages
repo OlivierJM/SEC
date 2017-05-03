@@ -25,6 +25,3 @@ accounts-ui
 accounts-password
 kadira:flow-router
 meteortoys:allthings
-tomi:upload-server
-tomi:upload-jquery
-summernote:summernote
