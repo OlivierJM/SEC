@@ -38,6 +38,7 @@ export default class Calculator extends Component {
     var loc = '';
     var lat = '';
     var lon = '';
+    var rad = '';
     $.get("http://ipinfo.io", function(response) {
         loc = response.loc;
         var coords = loc.split(',');
@@ -52,7 +53,7 @@ export default class Calculator extends Component {
       console.log(lat, lon);
   }, "jsonp");
 
-  var rad = Session.get('uvIndex');
+  rad = Session.get('uvIndex');
 
     return(
       <div className="calc">
