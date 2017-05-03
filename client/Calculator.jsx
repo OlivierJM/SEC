@@ -6,51 +6,53 @@ export default class Calculator extends Component {
 
 
   getData(){
-    // var key = "9b4b3c2c3e0f4891591a759ce746eef8";
-    // // var link = "http://samples.openweathermap.org/v3/uvi/15.3,28.32/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8"
-    var link = 'http://api.openweathermap.org/v3/uvi/15.3,28.32/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8'
-    // // let data = fetch(link);
-    // // console.log(data);
-    // fetch("api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9b4b3c2c3e0f4891591a759ce746eef8 ")
-    //   .then(function(response){
-    //       console.log(response);
-    //     var data = response.json();
-    //     console.log(data);
-    //       return data
-    //   })
-    $.ajax({
-    type:"GET"
-    , url:"http://api.openweathermap.org/data/2.5/weather?q=Lusaka&APPID=9b4b3c2c3e0f4891591a759ce746eef8"
-    , dataType:"jsonp"
-    , success: function(data){
+    var lat = Session.get('lat');
+    var lon = Session.get('lon')
 
-        $('#result').text(data)
-        console.log(data.coord.lat);
-
+    var link = "http://api.openweathermap.org/v3/uvi/"+lat+','+lon+"/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8";
+    // fetch("http://api.openweathermap.org/v3/uvi/-15.3,20.8/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8")
+    $.get(link, function(data){
+      Session.set('uvIndex', data.data)
     }
-   , error: function(e) {
-       console.log(e)
-       alert(e + "Error");
-       }
-    });
-
-  }
+  )}
 
   handleCalcute(event){
     event.preventDefault();
-
-    let  solarRadiation = '1.27';
+    let solarRadiation = '1.27';
     let spa = $('#spa').val();
     let efficiency = $('#eff').val();
-    let aEnergy = solarRadiation * spa * efficiency;
+    // let loc = $('#location').val();
+    let uvIndex = Session.get('uvIndex');
+    let radiation = uvIndex * 100;
+    let aEnergy = radiation * spa * efficiency;
+
     Session.set('energy', aEnergy)
+    Session.set('radiation', radiation);
+    // $('#rads').text("The Solar Radiation for your area is: " + radiation + "Watts/meter squared")
     $('#amount').text(aEnergy);
-    // console.log(aEnergy);
 
 
   }
 
   render(){
+    var loc = '';
+    var lat = '';
+    var lon = '';
+    $.get("http://ipinfo.io", function(response) {
+        loc = response.loc;
+        var coords = loc.split(',');
+        for (let a in coords){
+          lat = Math.floor(coords[0]);
+          lon = Math.floor(coords[1]);
+        }
+      $('#location').val(response.loc)
+      loc = response.loc
+      Session.set('lat', lat);
+      Session.set('lon', lon);
+      console.log(lat, lon);
+  }, "jsonp");
+
+  var rad = Session.get('uvIndex');
 
     return(
       <div className="calc">
@@ -61,15 +63,16 @@ export default class Calculator extends Component {
               <div className='col-sm-4'>
 
                   <form className="form-signin" onSubmit={this.handleCalcute.bind(this)}>
-                    <h3>The Solar Radiation for your area is: <br/> 1.27 Watts/meter squared</h3>
+                    <h3 className="" ><span id="rads">The UV Index in your location is: {rad}</span></h3>
                       <h2 className="form-signin-heading">Calculations</h2>
                       <div className="alert" role="alert"></div>
                       <div className='form-group'>
 
                           <label htmlFor="spa" className="sr-only">Solar Panel Area</label>
                           <input type="number" id="spa" className="form-control" placeholder="Solar Panel Area in meter squared eg:30 " required autoFocus/>
-
+                          <input className="" id="location" hidden placeholder={loc}/>
                       </div>
+
                       <div className='form-group'>
 
                           <label htmlFor="eff" className="sr-only">Efficiency</label>
@@ -124,3 +127,12 @@ export default class Calculator extends Component {
   }
 
 }
+export function initiate_geolocation() {
+     navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+ }
+
+export function handle_geolocation_query(position){
+     alert('Lat: ' + position.coords.latitude + ' ' +
+           'Lon: ' + position.coords.longitude);
+
+         }
