@@ -35,7 +35,7 @@ export default class Calculator extends Component {
         if(appliances[i].value <= aEnergy){
         // return  <List name={appliances[i].name} value={appliances[i].value}/>
         console.log(appliances[i].name);
-        $('#appliance').html('<ul><li>'+appliances[i].name+' >> '+appliances[i].value +'</li></ul>')
+        // $('#appliance').html('<ul><li>'+appliances[i].name+' >> '+appliances[i].value +'</li></ul>')
         }
     }
 
