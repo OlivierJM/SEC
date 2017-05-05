@@ -52,10 +52,16 @@ export  class Header extends Component {
                         <li className='navLinks'>
                             <a href="/">Calculate </a>
                         </li>
+                        <li className='navLinks'>
+                            <a href="/about">About Us </a>
+                        </li>
+                        <li className='navLinks'>
+                            <a href="/battery">Battery Tool </a>
+                        </li>
                     </ul>
-                    {/* <div className="navbar-header">
-                        <a className="navbar-brand" href="#">Bloggers</a>
-                    </div> */}
+
+
+
 
                     <ul className="nav navbar-nav navbar-right">
                       <div className="dropdown">
@@ -67,6 +73,11 @@ export  class Header extends Component {
                                 Log Out
                               </a>
                             </li>
+                            <li>
+                              <a href="" className="team">
+                                UV_TECHTROIDS
+                              </a>
+                              </li>
                             {/* <li><a href="#">Add Post</a></li> */}
                           </ul>
                         </div>
@@ -80,11 +91,15 @@ export  class Header extends Component {
                         <a className="navbar-brand" href="#">Solar Energy Calculator</a>
                     </div>
                     <ul className="nav navbar-nav">
-                        <li className="">
-                            <a href="/">Home</a>
-                        </li>
+
                         <li>
                             <a href="/">Calculate </a>
+                        </li>
+                        <li className=''>
+                            <a href="/about">About Us </a>
+                        </li>
+                        <li className=''>
+                            <a href="/battery">Battery Tool </a>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
@@ -96,6 +111,12 @@ export  class Header extends Component {
                             <a href="/login">
                                 <span className="glyphicon glyphicon-log-in"></span>  Login</a>
                         </li>
+                        <li>
+                          <a href="">
+                            UV_TECHTROIDS
+                          </a>
+                          </li>
+
                     </ul>
                 </div>
             </nav>
