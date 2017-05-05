@@ -25,3 +25,4 @@ accounts-ui
 accounts-password
 kadira:flow-router
 meteortoys:allthings
+session@1.1.7
