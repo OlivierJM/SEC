@@ -158,10 +158,15 @@ export default class Calculator extends Component {
                   </form>
               </div>
               <div className="col-sm-4">
-                <h4>The amount of usable energy you can get from this solar panel in your area is:</h4>
-                <h2><span id="amount"></span></h2>
-                 {/* {Session.get('energy')} */}
-                 <div id='appliance'></div>
+                <div class="panel panel-default">
+                  <div className="panel-footer">
+
+                    <h4>The amount of usable energy you can get from this solar panel in your area is:</h4>
+                          <h2><span id="amount">0 Watts</span></h2>
+                          <div id='appliance'>You Have not Calculated</div>
+                        </div>
+
+                </div>
               </div>
               <div className="col-sm-4">
                 <h3 className="text-primary">Some Home Appliances That can be used</h3>
