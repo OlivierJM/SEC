@@ -43,7 +43,9 @@ export default class Calculator extends Component {
     Session.set('energy', aEnergy)
     Session.set('radiation', radiation);
     // $('#rads').text("The Solar Radiation for your area is: " + radiation + "Watts/meter squared")
-    $('#amount').text(aEnergy);
+    $('#amount').text(`${aEnergy} Watts`);
+    $('#appliance').html(`<a href="/battery">Check the best Battery for your solar</a>`)
+
 
     for(i = 0; i < appliances.length; i++){
         if(appliances[i].value <= aEnergy){
@@ -156,8 +158,8 @@ export default class Calculator extends Component {
                   </form>
               </div>
               <div className="col-sm-4">
-                <h4>The amount of usable energy you can get from this solar panel in your area is</h4>
-                <h2><span id="amount"></span> Watts</h2>
+                <h4>The amount of usable energy you can get from this solar panel in your area is:</h4>
+                <h2><span id="amount"></span></h2>
                  {/* {Session.get('energy')} */}
                  <div id='appliance'></div>
               </div>

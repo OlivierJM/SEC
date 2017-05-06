@@ -11,27 +11,35 @@ export default class Battery extends Component {
     let batteryPower = bSize * bVolts;
     console.log(batteryPower);
   let bEnergy =  Session.get('energy');
+  $('.bEnergy').html(`<p>The Energy From your Solar is ${bEnergy} Watts</p>`)
+  $('.bCapacity').html(`<p>Your Battery Capacity is  ${batteryPower} Watts</p>`)
 
-    if(batteryPower <= bEnergy ){
-      console.log('You can use this batter');
-      $(".alert").html('You can use this battery')
+    if(batteryPower >= bEnergy ){
+      $(".alert").addClass('alert-success').html('You can use this battery');
+    } else {
+      $(".alert").addClass('alert-danger').html(`Kindly Get a battery that is higher than ${bEnergy} Watts`);
+
     }
 
 
 
 
   }
-  render(){
 
+  ComponentDidMount(){
+
+    let bEnergy =  Session.get('energy');
+    console.log(bEnergy);
+  }
+  render(){
     return(
       <div>
         <Header />
         <div className="container">
           <div className="row">
           <div className="col-sm-6">
-        <form className="form-signin" onSubmit={this.handleCalcute.bind(this)}>
+        <form className="" onSubmit={this.handleCalcute.bind(this)}>
             <h2 className="form-signin-heading">Get the Correct Battery For your Home</h2>
-            <div className="alert" role="alert"></div>
             <div className='form-group'>
 
                 <label htmlFor="bsize" className="" title="kindly get these details from the package">Size of the Battery</label>
@@ -50,7 +58,16 @@ export default class Battery extends Component {
         </form>
       </div>
       <div className="col-sm-6">
+        <div className="bEnergy">
+          <p >
+
+          </p>
+        </div>
+        <div className="bCapacity">
+
+        </div>
         <div className="alert" role="alert"></div>
+
       </div>
       </div>
     </div>
