@@ -53,10 +53,10 @@ export  class Header extends Component {
                             <a href="/">Calculate </a>
                         </li>
                         <li className='navLinks'>
-                            <a href="/about">About Us </a>
+                          <a href="/battery">Battery Tool </a>
                         </li>
                         <li className='navLinks'>
-                            <a href="/battery">Battery Tool </a>
+                            <a href="/about">About Us </a>
                         </li>
                     </ul>
 
@@ -88,18 +88,18 @@ export  class Header extends Component {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="#">Solar Energy Calculator</a>
+                        <a className="navbar-brand" href="/">Solar Energy Calculator</a>
                     </div>
                     <ul className="nav navbar-nav">
 
                         <li>
-                            <a href="/">Calculate </a>
+                            <a href="/calculate">Calculate Energy</a>
+                        </li>
+                        <li className=''>
+                          <a href="/battery">Battery Tool </a>
                         </li>
                         <li className=''>
                             <a href="/about">About Us </a>
-                        </li>
-                        <li className=''>
-                            <a href="/battery">Battery Tool </a>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">

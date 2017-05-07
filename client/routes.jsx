@@ -5,6 +5,7 @@ import {Register} from '/client/Dashboard/Accounts/Register'
 import Calculator from './Calculator.jsx';
 import About from './Partials/About';
 import Battery from './Battery';
+import Home from './Home';
 
 FlowRouter.route('/login', {
   name: 'Login',
@@ -13,6 +14,12 @@ FlowRouter.route('/login', {
   }
 });
 FlowRouter.route('/', {
+  name: 'Home',
+  action(){
+    mount(Home, {})
+  }
+});
+FlowRouter.route('/calculate', {
     name: 'Calculator',
     action() {
         mount(Calculator, {});

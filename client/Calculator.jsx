@@ -43,14 +43,17 @@ export default class Calculator extends Component {
     Session.set('energy', aEnergy)
     Session.set('radiation', radiation);
     // $('#rads').text("The Solar Radiation for your area is: " + radiation + "Watts/meter squared")
-    $('#amount').text(`${aEnergy} Watts`);
-    $('#appliance').html(`<a href="/battery">Check the best Battery for your solar</a>`)
 
 
-    for(i = 0; i < appliances.length; i++){
-        if(appliances[i].value <= aEnergy){
-          return ;
-        }
+    if(isNaN(aEnergy)){
+      $('#feedback').html(`We can't get details for your locations now`);
+      $('#appliance').html(`<a href="/battery">Consider checking our Battery tool and come back</a>`)
+      // alert('Sorry try again');
+
+    }else {
+      $('#amount').text(`${aEnergy} Watts`);
+      $('#appliance').html(`<a href="/battery">Check the best Battery for your solar</a>`)
+
     }
 
 
@@ -58,9 +61,10 @@ export default class Calculator extends Component {
 
 
   getData(){
-    lat = 15;
+    // lat = Session.get('lat');
+    // lon = Session.get('lon');
+    lat = -15;
     lon = 28;
-
       var link = "http://api.openweathermap.org/v3/uvi/"+lat+','+lon+"/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8";
       // fetch("http://api.openweathermap.org/v3/uvi/-15.3,20.8/current.json?appid=9b4b3c2c3e0f4891591a759ce746eef8")
       $.get(link, function(data){
@@ -84,11 +88,6 @@ export default class Calculator extends Component {
 
   render(){
 
-
-
-
-
-
     $.get("http://ipinfo.io", function(response) {
         loc = response.loc;
         city = response.city;
@@ -101,6 +100,9 @@ export default class Calculator extends Component {
           Session.set('lat', lat);
           Session.set('lon', lon);
         }
+
+
+
   }, "jsonp");
   //
 
@@ -158,11 +160,12 @@ export default class Calculator extends Component {
                   </form>
               </div>
               <div className="col-sm-4">
-                <div class="panel panel-default">
+                <div className="panel panel-default">
                   <div className="panel-footer">
 
                     <h4>The amount of usable energy you can get from this solar panel in your area is:</h4>
                           <h2><span id="amount">0 Watts</span></h2>
+                          <p><span id="feedback"></span></p>
                           <div id='appliance'>You Have not Calculated</div>
                         </div>
 

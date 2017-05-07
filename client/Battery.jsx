@@ -12,7 +12,7 @@ export default class Battery extends Component {
     console.log(batteryPower);
   let bEnergy =  Session.get('energy');
   $('.bEnergy').html(`<p>The Energy From your Solar is ${bEnergy} Watts</p>`)
-  $('.bCapacity').html(`<p>Your Battery Capacity is  ${batteryPower} Watts</p>`)
+  $('.bCapacity').html(`<p>Your Battery Capacity is  ${batteryPower} Watt Hours<br/><br/> This means You can use ${batteryPower} Watts per hour</p>`)
 
     if(batteryPower >= bEnergy ){
       $(".alert").addClass('alert-success').html('You can use this battery');
@@ -43,7 +43,7 @@ export default class Battery extends Component {
             <div className='form-group'>
 
                 <label htmlFor="bsize" className="" title="kindly get these details from the package">Size of the Battery</label>
-                <input type="number" id="bsize" className="form-control" placeholder="Size of the Battery" required autoFocus/>
+                <input type="number" id="bsize" className="form-control" placeholder="Size of the Battery in Amps" required autoFocus/>
 
             </div>
             <div className='form-group'>
